@@ -1,7 +1,9 @@
 package com.example.marthingshoppingapp.service
 
-import com.example.marthingshoppingapp.model.ProductResponse
-import com.example.marthingshoppingapp.model.TokenResponse
+import com.example.marthingshoppingapp.model.fakeStoreProduct.CategoriesResponse
+import com.example.marthingshoppingapp.model.fakeStoreProduct.FProductResponse
+import com.example.marthingshoppingapp.model.fakeStoreProduct.ProductResponse
+import com.example.marthingshoppingapp.model.fakeStoreProduct.TokenResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -19,5 +21,12 @@ interface Service {
     fun getProducts(@Query("limit") limit:Int,
                     @Query("sort") sort:String) : Call<ProductResponse>
 
+   @GET("products")
+   fun getFakeProducts():Call<FProductResponse>
 
+    @GET("categories")
+    fun getFakeCategories():Call<CategoriesResponse>
+
+
+    ///CategoryResponse=List<CategoryResponseItem>
 }

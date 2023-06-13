@@ -1,4 +1,4 @@
-package com.example.marthingshoppingapp.ui
+package com.example.marthingshoppingapp.ui.signin
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.marthingshoppingapp.R
 import com.example.marthingshoppingapp.databinding.FragmentSignInBinding
-import com.example.marthingshoppingapp.model.TokenResponse
+import com.example.marthingshoppingapp.model.fakeStoreProduct.TokenResponse
 import com.example.marthingshoppingapp.service.ApiUtil
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -40,7 +39,7 @@ class SignInFragment : Fragment() {
                 Snackbar.make(it,"Email bos ola bilmez!", Snackbar.LENGTH_LONG).show()
                 Snackbar.make(it,"Ad bos ola bilmez!", Snackbar.LENGTH_LONG).show()
             }else{
-                findNavController().navigate( SignInFragmentDirections.actionSignInFragmentToHomeFragment())
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToHomeFragment())
             }
         }
     }
@@ -57,12 +56,12 @@ class SignInFragment : Fragment() {
 
       service.userLogin(username,password).enqueue(object : Callback<TokenResponse> {
           override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
-              Toast.makeText(requireContext(),"errorrrr",Toast.LENGTH_LONG).show()
+              Toast.makeText(requireContext(),"username and password incorrect",Toast.LENGTH_LONG).show()
           }
 
 
           //mor_2314
-          //83r5^_
+          //83r5^_mor_
 
           override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
               Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_LONG).show()

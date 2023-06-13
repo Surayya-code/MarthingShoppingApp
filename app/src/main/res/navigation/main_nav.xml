@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/getStartedFragment"
-        android:name="com.example.marthingshoppingapp.ui.GetStartedFragment"
+        android:name="com.example.marthingshoppingapp.ui.getStarted.GetStartedFragment"
         android:label="fragment_get_started"
         tools:layout="@layout/fragment_get_started" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.marthingshoppingapp.ui.SignUpFragment"
+        android:name="com.example.marthingshoppingapp.ui.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.marthingshoppingapp.ui.SignInFragment"
+        android:name="com.example.marthingshoppingapp.ui.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -34,6 +34,6 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.marthingshoppingapp.ui.HomeFragment"
+        android:name="com.example.marthingshoppingapp.ui.home.HomeFragment"
         android:label="HomeFragment" />
 </navigation>

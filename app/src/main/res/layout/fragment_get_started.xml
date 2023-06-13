@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EBF0F0"
-    tools:context=".ui.GetStartedFragment">
+    tools:context=".ui.getStarted.GetStartedFragment">
 
     <ImageView
         android:id="@+id/imageView"
