@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.marthingshoppingapp.adapter.CategoriesAdapter
+import com.example.marthingshoppingapp.adapter.ProductAdapter
 import com.example.marthingshoppingapp.databinding.FragmentHomeBinding
 import com.example.marthingshoppingapp.model.fakeStoreProduct.CategoriesResponse
+import com.example.marthingshoppingapp.model.fakeStoreProduct.FProductResponse
 import com.example.marthingshoppingapp.service.ApiUtil
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,6 +24,7 @@ class HomeFragment : Fragment() {
     private val binding get()=_binding!!
     private val service=ApiUtil.getProductService()
     private val categoriesAdapter=CategoriesAdapter()
+    private val productAdapter=ProductAdapter()
 
 
     override fun onCreateView(
@@ -57,12 +61,36 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_LONG).show()
             }
         })
+
+
+        service.getFakeProducts().enqueue(object : Callback<FProductResponse> {
+            override fun onResponse(
+                call: Call<FProductResponse>,
+                response: Response<FProductResponse>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        productAdapter.updateList(it)
+                    }
+                }else{
+                    Toast.makeText(requireContext(),"Incorrect Product List",Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<FProductResponse>, t: Throwable) {
+                Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 
   private fun setRV(){
   with(binding){
       rvCategories.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
       rvCategories.adapter=categoriesAdapter
+
+      rvProducts.layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+      rvProducts.adapter=productAdapter
   }
   }
     override fun onDestroyView() {
